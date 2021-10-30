@@ -5,7 +5,7 @@ port = 2323
 FORMAT = 'utf-8'
 EXIT = 'exit'
 AD = (host, port)
-
+list_of_clients = []
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # socket created with IPv4 and TCP features
@@ -27,16 +27,22 @@ def tx(conn):
 s.listen()
 print(f"[LISTENING] Server is listening on {host}:{port}")
 #Connection acceptance
-client, addr = s.accept()
-print(f"[NEW CONNECTION] {addr} connected.")
-client.send("Welcome to the session".encode(FORMAT))
 
+while True:
+    client, addr = s.accept()
+    list_of_clients.append(client)
+    print(f"[NEW CONNECTION] connected. {len(list_of_clients)}")
+    # name = client.recv(1024).decode(FORMAT)
+    # print(f"{name} is in")
+"""
+her biri ismini gondersin, sonra da thread ve broadcast calis..
+"""
 
-connection = True
-while connection:
-    msg = rx(client, addr)
-    if msg == EXIT:
-        connection = False
+# connection = True
+# while connection:
+#     msg = rx(client, addr)
+#     if msg == EXIT:
+#         connection = False
     
 
-client.close()
+# client.close()

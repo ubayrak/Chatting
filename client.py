@@ -20,10 +20,10 @@ def tx(conn):
     return mesaj
 
 
-connection = True
-while connection:
-	tx_message = tx(c)
-	if tx_message == EXIT:
-		connection = False
+# connection = True
+# while connection:
+# 	tx_message = tx(c)
+# 	if tx_message == EXIT:
+# 		connection = False
 
-c.close
+# c.close
