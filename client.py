@@ -1,6 +1,8 @@
 import socket
+import select
+import sys
 
-host = '10.96.4.57'
+host = '10.96.7.207'
 port = 2323
 FORMAT = 'utf-8'
 EXIT = "exit"
@@ -19,6 +21,8 @@ def tx(conn):
     conn.send(mesaj.encode(FORMAT))
     return mesaj
 
+while True:
+    tx(c)
 
 # connection = True
 # while connection:
