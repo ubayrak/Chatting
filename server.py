@@ -1,4 +1,5 @@
 import socket
+import threading
 
 host = '10.96.4.57'
 port = 2323
@@ -23,6 +24,24 @@ def tx(conn):
     conn.send(mesaj.encode(FORMAT))
 
 
+def handle_client(conn, addr):
+    print(f"[NEW CONNECTION] {addr} connected.")
+    conn.send("Welcome to this chatroom!")
+    
+    while True:
+
+
+
+def broadcast(message, connection):
+    pass
+
+
+def remove(connection):
+    connection.close()
+
+
+
+
 #Program Starts
 s.listen()
 print(f"[LISTENING] Server is listening on {host}:{port}")
@@ -31,7 +50,8 @@ print(f"[LISTENING] Server is listening on {host}:{port}")
 while True:
     client, addr = s.accept()
     list_of_clients.append(client)
-    print(f"[NEW CONNECTION] connected. {len(list_of_clients)}")
+    thread = threading.Thread(target=handle_client, args=(conn, addr))
+    thread.start()
     # name = client.recv(1024).decode(FORMAT)
     # print(f"{name} is in")
 """
